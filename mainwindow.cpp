@@ -63,20 +63,34 @@ void MainWindow::addMember()
     queryText += ui->tabWidget->tabBar()->tabText(ui->tabWidget->currentIndex());
     switch (ui->tabWidget->currentIndex()) {
     case 0: {
-        queryText += " (name) VALUES ('";
-        queryText += ui->facultyTextEdit->toPlainText() + "') ";
-        ui->facultyComboBox->addItem(ui->facultyTextEdit->toPlainText());
+        QString facultyName = ui->facultyTextEdit->toPlainText();
+        if (facultyName != "") {
+          queryText += " (name) VALUES ('";
+          queryText += facultyName + "') ";
+          ui->facultyComboBox->addItem(facultyName);
+        }
         break;
     }
     case 1: {
-        queryText += "(id_faculty, name) VALUES ('";
-        queryText += ui->facultyComboBox->currentText() + "', '" + ui->groupTextEdit->toPlainText() + "')";
-        ui->groupsComboBox->addItem(ui->groupTextEdit->toPlainText());
+        QString idFaculty = ui->facultyComboBox->currentText(),
+                groupName = ui->groupTextEdit->toPlainText();
+        if (idFaculty != "" && groupName != "") {
+          queryText += "(id_faculty, name) VALUES ('";
+          queryText += idFaculty + "', '" + groupName + "')";
+          ui->groupsComboBox->addItem(groupName);
+        }
         break;
     }
     case 2: {
-        queryText += "(firstName, lastName, middleName, sex, id_group, info) VALUES ('";
-        queryText += ui->firstNameLineEdit->text() + "', '" + ui->lastNameLineEdit->text() + "', '" + ui->middleNameLineEdit->text() + "', '" + ((ui->sexComboBox->currentText() == "Male" ) ? 'm' : 'f') + "', '" + ui->groupsComboBox->currentText() + "', '" + ui->studentInfoTextEdit->toPlainText() + "')";
+        QString firstName = ui->firstNameLineEdit->text(),
+                lastName =  ui->lastNameLineEdit->text(),
+                middleName = ui->middleNameLineEdit->text(),
+                idGroup = ui->groupsComboBox->currentText(),
+                info = ui->studentInfoTextEdit->toPlainText();
+        if (firstName != "" && lastName != "" && idGroup != "") {
+          queryText += "(firstName, lastName, middleName, sex, id_group, info) VALUES ('";
+          queryText += firstName + "', '" + lastName + "', '" + middleName + "', '" + ((ui->sexComboBox->currentText() == "Male" ) ? 'm' : 'f') + "', '" + idGroup + "', '" + info + "')";
+        }
         break;
     }
     }
