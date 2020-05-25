@@ -48,7 +48,7 @@
        <cursorShape>ArrowCursor</cursorShape>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabFaculty">
        <attribute name="title">
@@ -202,6 +202,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -211,8 +212,22 @@
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuLogout">
+    <property name="title">
+     <string>Logout...</string>
+    </property>
+    <addaction name="actionLogout"/>
+   </widget>
+   <addaction name="menuLogout"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLogout">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
